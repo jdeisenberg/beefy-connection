@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>$(title)</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.23.1" />
+	<meta name="description" content="$(description)" />
+</head>
+<body>
+<header>
+	<img id="logo" class="headerimg" src="$(logo)" />
+</header>
+
+<h1>$(title)</h1>
+<p id="description">$(description)</p>
+
+<div id="user_photo">
+	<div id="photo_preview"></div>
+	<button id="btnTakePicture" class="button btn-large">Take Picture!</button>
+</div>
+
+<div id="contact form">
+<h3 id="contact-header">Contact Info</h3>
+	<input name="first-name" class="req contact long" type="text" placeholder="First Name"></input>
+	<input name="last-name" class="req contact long" type="text" placeholder="Last Name"></input> 
+	<input name="email" class="req contact long" type="text" placeholder="Email"></input>
+	<input name="irc" class="contact" type="text" placeholder="IRC Nick (FreeNode)"></input>
+	<input name="phone" class="contact" type="text" placeholder="Phone"></input>
+	<div id="location">
+		<input name="address" class="contact" type="text long" placeholder="Address"></input>
+		<input name="city" class="contact" type="text" placeholder="City"></input>
+		<input name="state" class="contact" type="text" placeholder="State"></input>
+	</div>
+	<input name="language" class="contact" type="text" placeholder="Preferred Spoken Language"></input>
+	<button name="next" name="next" class="button btn">Next</button>
+</div>
+
+<div id="interests">
+<h3 id="interest-header">How Would You Like to Contribute?</h3>
+	<input type="checkbox" name="interest" value="content">Content Writer</input>
+	<input type="checkbox" name="interest" value="designer">Designer</input>
+	<input type="checkbox" name="interest" value="people">People Person</input> 
+	<input type="checkbox" name="interest" value="dev">OS Developer</input>
+	<input type="checkbox" name="interest" value="translator">Translator</input>
+	<input type="checkbox" name="interest" value="web">Web Developer</input>
+	<input type="checkbox" name="interest" value="admin">Administrator</input>
+	<label for="other_interest long">Other: </label>
+	<input type="text" name="other_interest"></input>
+	<input type="checkbox" name="interest" value="speak">Would you like us to speak at your organization?</input>
+	<textarea name="comments" placeholder="comments"></textarea>
+	<button id="back" name="back" class="button btn">Back</button>
+</div>
+
+<button id="submit" name="submit" class="button btn-large" value="Submit">Submit</button>
+
+<footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('div#interests').hide();
+
+	if ($('img#logo').attr('src') == '$(logo)'){
+		$('img#logo').hide();
+	}
+	
+	$('button').click(function(e){
+		e.preventDefault();
+	});	
+});
+
+</script>
+
+</footer>
+
+
+</body>
+
+
+</html>
