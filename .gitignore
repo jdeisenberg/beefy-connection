@@ -1,3 +1,52 @@
-*.pyc
+*.py[co]
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+.*.sw*
+# *.swp
+# *.swo
+# *.swn
+# *.swm
+# *.swl
+# *.swk
+
+# Installer logs
+pip-log.txt
+
+# Gimp files
+*.xcf
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+#Translations
+*.mo
+
+# Vagrant
+Vagrantfile
+.vagrant
+
+#Mr Developer
+.mr.developer.cfg
+
+__pycache__
+.DS_Store
+
+dump.rdb
+
+tmp/
+*#
 *~
-*.swp
+
+*.sqlite

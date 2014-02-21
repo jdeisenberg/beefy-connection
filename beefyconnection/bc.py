@@ -8,6 +8,9 @@ interests = {
     'Packaging': 'Package Software to be included in Fedora',
 }
 
+class BeefyConnection (object):
+    exposed = True
+
 class BeefyConfig(object):
 
     def __init__(self):
@@ -42,6 +45,9 @@ class BeefyInterests(object):
     def get_interests():
       return "User Interest Info"
 
+    def user(self):
+        return 'This is the "page" content'
+
 class BeefyUser(object):
 
     exposed = True
@@ -50,10 +56,14 @@ class BeefyUser(object):
       return "User Info"
 
     def GET(self):
+        user = None
 
-        return('User Info:\n\nFirst name: {0}\nLast Name: {1}\nEmail: {2}'.format(user['first'], user['last'], user['email']))
+        return ('''\
+User Info:
 
-    def POST(self, first, last, email):
+First name: {0}
+Last Name: {1}
+Email: {2}'''.format(user['first'], user['last'], user['email']))
 
         user = {
             'first': first,
@@ -65,12 +75,23 @@ class BeefyUser(object):
 
         return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
 
-if __name__ == '__main__':
+    def POST(self, first, last, email):
+
+        user = {
+            'first': first,
+            'last': last,
+            'email': email,
+        }
+
+    return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
+
+
+def main():
 
     bc = BeefyConfig()
     bc._load_config('beefy-connection.conf')
 
-    parser=argparse.ArgummentParser(description='Beefy Connection!!!')
+    parser=argparse.ArgumentParser(description='Beefy Connection!!!')
     parser.add_argument('-c', '--config', dest='config',
                         default='beefy-connection.cfg')
     parser.add_argument('-d', '--database', dest='database')
@@ -91,4 +112,7 @@ if __name__ == '__main__':
 
     cherrypy.engine.start()
     cherrypy.engine.block()
+
+if __name__ == '__main__':
+    main()
 
