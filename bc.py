@@ -8,10 +8,18 @@ interests = {
 
 user = {}
 
+class BeefyInterests(object):
+    exposed = True
+
+    def get_interests():
+      return "User Interest Info"
 
 class BeefyUser(object):
 
     exposed = True
+
+    def get_user():
+      return "User Info"
 
     def __init__(self, dbfile):
         self.conn=sqlite3.connect(dbfile)
@@ -35,7 +43,11 @@ class BeefyUser(object):
 if __name__ == '__main__':
 
     cherrypy.tree.mount(
-        BeefyUser(), '/api/user',
+        BeefyUser(), '/bc/user',
+        {'/':
+            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+        }
+        BeefyInterests(), '/bc/interests',
         {'/':
             {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }
