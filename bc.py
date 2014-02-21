@@ -1,7 +1,9 @@
 import cherrypy
 import sqlite3
 
+
 class BeefyConnection (object):
+    exposed = True
 
     @cherrypy.expose
     def index(self):
@@ -9,28 +11,29 @@ class BeefyConnection (object):
 
     def user(self):
         return 'This is the "page" content'
-    page.exposed = True
+
 
 class BeefyUser(object):
 
     exposed = True
 
     def __init__(self, dbfile):
-        self.conn=sqlite3.connect(dbfile)
+        self.conn = sqlite3.connect(dbfile)
 
     def GET(self):
+        user = None
 
-        return('User Info:\n\nFirst name: {0}\nLast Name: {1}\nEmail: {2}'.format(user['first'], user['last'], user['email']))
+        return ('''\
+User Info:
+
+First name: {0}
+Last Name: {1}
+Email: {2}'''.format(user['first'], user['last'], user['email']))
 
     def POST(self, first, last, email):
-
-        user = {
-            'first': first,
-            'last': last,
-            'email': email,
-        }
-        self.conn.execute('INSERT INTO person (last_name, first_name, email)
-                           VALUES (%s, %s, %s)' % (last, first, email))
+        self.conn.execute(
+            '''INSERT INTO person (last_name, first_name, email)
+            VALUES (%s, %s, %s)''' % (last, first, email))
 
         return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
 
