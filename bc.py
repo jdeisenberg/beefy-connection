@@ -1,5 +1,6 @@
 import cherrypy
 import sqlite3
+import argparse
 
 interests = {
     'Ambassador': 'Represents Fedora',
@@ -41,6 +42,12 @@ class BeefyUser(object):
         return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
 
 if __name__ == '__main__':
+
+    parser=argparse.ArgummentParser(description='Beefy Connection!!!')
+    parser.add_argument('-c', '--config', dest='config',
+                        default='beefy-connection.cfg')
+    parser.add_argument('-d', '--database', dest='database')
+    args = parser.parse_args()
 
     cherrypy.tree.mount(
         BeefyUser(), '/bc/user',
