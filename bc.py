@@ -1,5 +1,6 @@
 import cherrypy
 import sqlite3
+import argparse
 import ConfigParser
 
 interests = {
@@ -68,6 +69,12 @@ if __name__ == '__main__':
 
     bc = BeefyConfig()
     bc._load_config('beefy-connection.conf')
+
+    parser=argparse.ArgummentParser(description='Beefy Connection!!!')
+    parser.add_argument('-c', '--config', dest='config',
+                        default='beefy-connection.cfg')
+    parser.add_argument('-d', '--database', dest='database')
+    args = parser.parse_args()
 
     cherrypy.tree.mount(
         BeefyUser(), '/bc/user',
