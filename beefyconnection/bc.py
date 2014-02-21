@@ -37,6 +37,10 @@ Email: {2}'''.format(user['first'], user['last'], user['email']))
 
         return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
 
-if __name__ == '__main__':
+
+def main():
     cherrypy.quickstart(BeefyConnection)
+
+if __name__ == '__main__':
+    main()
 
