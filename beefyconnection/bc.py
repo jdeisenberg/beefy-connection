@@ -37,7 +37,6 @@ class BeefyConfig(object):
 class BeefyConnection (object):
 
     exposed = True
-
     def index(self):
         return "Welcome to the Beefy Connection"
 
@@ -45,6 +44,7 @@ class BeefyConnection (object):
         return 'This is the "page" content'
 
 class BeefyDisplay (object):
+
     def index(self):
         template_data = BeefyConfig.cfgs['template']
         exposed = True
