@@ -47,3 +47,9 @@ class BeefyUser(object):
             VALUES (%s, %s, %s)''' % (last, first, email))
         return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
 
+class BeefyPic(object):
+
+    exposed = True
+
+    def POST(self, image):
+        return('pic uploaded')
