@@ -1,4 +1,5 @@
 import sqlite3
+import simplejson
 import ConfigParser
 
 class BeefyConfig(object):
@@ -41,11 +42,12 @@ class BeefyUser(object):
 
     exposed = True
 
-    def POST(self, first, last, email):
-        self.conn.execute(
-            '''INSERT INTO person (last_name, first_name, email)
-            VALUES (%s, %s, %s)''' % (last, first, email))
-        return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
+    def POST(self, user_json):
+        """Get user_data json object from form submission"""
+
+        user_data = simplejson.loads(user_json)
+
+        return ('User Data: {0}'.format(user_data))
 
 class BeefyPic(object):
 
