@@ -1,10 +1,12 @@
 import cherrypy
-from bc import BeefyUser, BeefyInterest, BeefyConfig, BeefyConnection
+import argparse
+
+from bc import BeefyUser, BeefyInterests, BeefyConfig, BeefyConnection
 
 
 def main():
 
-    parser=argparse.ArgummentParser(description='Beefy Connection!!!')
+    parser=argparse.ArgumentParser(description='Beefy Connection!!!')
     parser.add_argument('-c', '--config', dest='config',
                         default='beefy-connection.cfg')
     parser.add_argument('-d', '--database', dest='database')

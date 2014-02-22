@@ -57,7 +57,6 @@ class BeefyConfig(object):
 class BeefyConnection (object):
     exposed = True
 
-    @cherrypy.expose
     def index(self):
         return "Welcome to the Beefy Connection"
 
