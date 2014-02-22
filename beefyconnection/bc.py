@@ -3,8 +3,10 @@ import ConfigParser
 
 class BeefyConfig(object):
 
-    def __init__(self):
+    def __init__(self, args):
         self.cfgs = {}
+        self._load_config(args.config)
+        self.config_override(args)
 
     def _load_config(self, path):
         """Constructor for skein, will create self.cfgs and self.logger
@@ -26,6 +28,10 @@ class BeefyConfig(object):
 
             for k, v in config.items(section):
                 self.cfgs[section][k] = v
+
+    def config_override(self, args):
+        if args.database:
+            self.cfgs['db']['path'] = args.database
 
 
 class BeefyConnection (object):
