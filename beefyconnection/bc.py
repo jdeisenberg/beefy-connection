@@ -1,4 +1,5 @@
 import sqlite3
+import argparse
 import ConfigParser
 
 class BeefyConfig(object):
@@ -53,3 +54,10 @@ class BeefyPic(object):
 
     def POST(self, image):
         return('pic uploaded')
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Beefy Connection webserver!')
+    parser.add_argument('-c', '--config', action='store',
+            default='beefy-connection.conf')
+    parser.add_argument('-d', '--database', action='store')
+    args = parser.parse_args()
