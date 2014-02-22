@@ -13,10 +13,10 @@
 <div id="content">
 <header>
 		
-	<img id="logo" class="headerimg" src="$(logo)" />
+	<img id="logo" class="headerimg" src="../images/beefy.png" />
 
-	<h1>$(title)</h1>
-	<p id="description">$(description)</p>
+	<h1>Connect with Fedora</h1>
+	<p id="description">Are you interested in contributed to a great open source community?  Let us know how you'd like to be involved!</p>
 	
 	<div id="user_photo">
 		<div id="photo_preview"></div>
