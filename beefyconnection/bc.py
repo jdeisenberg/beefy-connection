@@ -60,14 +60,18 @@ class BeefyUser(object):
     def __init__(self, bc):
         self.bc = bc
 
-    def POST(self, first, last, email, organization='NULL', irc='NULL',
-        phone='NULL', address='NULL', city='NULL', state='NULL', postal='NULL',
-        language='NULL', other_interest='NULL', comments='NULL', interests=None):
+    def GET(self):
+        return ('Use POST')
+
+    def POST(self, first, last, email, organization='NULL', phone='NULL',
+        address='NULL', city='NULL', state='NULL', postal='NULL',
+        language='NULL', irc='NULL', fb='NULL', twitter='NULL',
+        comments='NULL', interests=None):
         """Get user data object from form submission"""
 
         self.conn = sqlite3.connect(self.bc.cfgs['db']['path'])
 
-        sql = "INSERT INTO person ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')".format(last, first, email, organization, irc, phone, address, city, state, postal, language)
+        sql = "INSERT INTO person values (NULL, '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')".format(first, last, email, organization, phone, address, city, state, postal, language, irc, fb, twitter)
 
         print("sql: {0}".format(sql))
 
