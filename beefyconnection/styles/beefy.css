@@ -1,5 +1,6 @@
 body{
 	background-color:#3562A0;
+	font-family: 'Fanwood Text', serif
 }
 
 div#content{
@@ -8,7 +9,7 @@ div#content{
 	margin-left:auto;
 	margin-right:auto;
 	max-width:800px;
-	min-height: 700px;
+	min-height: 850px;
 	border:2px solid;
 	border-radius:25px;
 }
@@ -30,11 +31,14 @@ div#photo_preview{
 }
 
 div.form-container{
-	
 	max-width: 600px;
 	margin-left:40px;
 	font-family: 'Fanwood Text', serif;
 	float:left;
+}
+
+img#logo{
+	height: 120px;
 }
 
 input{

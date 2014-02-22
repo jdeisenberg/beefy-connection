@@ -1,16 +1,16 @@
 import cherrypy
 import argparse
 
-from bc import BeefyUser, BeefyPic, BeefyConfig, BeefyConnection
+from bc import BeefyUser, BeefyPic, BeefyDisplay,BeefyConfig, BeefyConnection
 
 
 def main():
-
     parser=argparse.ArgumentParser(description='Beefy Connection!!!')
     parser.add_argument('-c', '--config', dest='config',
-                        default='beefy-connection.cfg')
+                        default='../beefy-connection.conf')
     parser.add_argument('-d', '--database', dest='database')
     args = parser.parse_args()
+    bc_config=BeefyConfig(args)
 
     cherrypy.tree.mount(
         BeefyUser(), '/bc/submit',
@@ -24,6 +24,14 @@ def main():
             {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }
     )
+
+    cherrypy.tree.mount(
+        BeefyDisplay(),'' ,
+        {'/':
+            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+        }
+    )
+
 
     cherrypy.engine.start()
     cherrypy.engine.block()

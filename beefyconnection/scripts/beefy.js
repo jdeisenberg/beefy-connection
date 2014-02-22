@@ -13,7 +13,7 @@ function valAlpha(val){
 }
 
 function valText(val){
-	crit = /^[A-Za-z0-9\.\?\:\-\(\)\,\@]+$/;
+	crit = /^[A-Za-z0-9\. \?:\-(),@]+$/;
 	if (!crit.test(val)){
 		return false;
 	}else{
@@ -140,6 +140,11 @@ $(document).ready(function(){
 	$('button#submit').click(function(){
 		if(validate()){
 			data = getData();
+			$.ajax({
+				url:'/bc/submit',
+				method: 'POST',
+				data: data
+			});
 		}
 	});
 });
