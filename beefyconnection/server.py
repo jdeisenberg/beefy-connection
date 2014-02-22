@@ -1,7 +1,7 @@
 import cherrypy
 import argparse
 
-from bc import BeefyUser, BeefyInterests, BeefyConfig, BeefyConnection
+from bc import BeefyUser, BeefyPic, BeefyConfig, BeefyConnection
 
 
 def main():
