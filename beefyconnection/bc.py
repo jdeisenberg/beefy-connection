@@ -51,6 +51,7 @@ class BeefyDisplay (object):
         from String import Template
         f = open ('./template/beefy.template','r')
         return Template(f.read(),dict())
+    index.exposed = True
 
 class BeefyUser(object):
 
