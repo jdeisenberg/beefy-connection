@@ -15,6 +15,18 @@ class BeefyConfig(object):
         config = ConfigParser.SafeConfigParser()
         try:
             f = open(path)
+            config.readfp(f)
+            f.close()
+        except ConfigParser.InterpolationSyntaxError as e:
+            raise Error("Unable to parse configuration file properly: %s" % e)
+
+        for section in config.sections():
+            if not self.cfgs.has_key(section):
+                self.cfgs[section] = {}
+
+            for k, v in config.items(section):
+                self.cfgs[section][k] = v
+
 
     def __init__(self):
         self.cfgs = {}
