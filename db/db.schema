@@ -1,2 +1,2 @@
-CREATE TABLE person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, phone TEXT, city TEXT, state TEXT, postal_code TEXT, irc TEXT, fb TEXT, twitter TEXT, interests TEXT);
+CREATE TABLE person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, phone TEXT, city TEXT, state TEXT, postal_code TEXT, irc TEXT, fb TEXT, twitter TEXT, interests TEXT, email TEXT);
 CREATE TABLE interests (id INTEGER PRIMARY KEY, text TEXT);
