@@ -1,7 +1,7 @@
 import cherrypy
 import argparse
 
-from bc import BeefyUser, BeefyPic, BeefyConfig, BeefyConnection
+from bc import BeefyUser, BeefyPic, BeefyDisplay,BeefyConfig, BeefyConnection
 
 
 def main():
@@ -24,6 +24,14 @@ def main():
             {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }
     )
+
+    cherrypy.tree.mount(
+        BeefyDisplay(),'' ,
+        {'/':
+            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+        }
+    )
+
 
     cherrypy.engine.start()
     cherrypy.engine.block()

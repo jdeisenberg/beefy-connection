@@ -38,6 +38,14 @@ class BeefyConnection (object):
     def user(self):
         return 'This is the "page" content'
 
+class BeefyDisplay (object):
+	def index(self):
+		template_data = BeefyConfig.cfgs['template']
+		exposed = True
+		from String import Template
+		f = open ('./template/beefy.template','r')
+		return Template(f.read(),dict())
+
 class BeefyUser(object):
 
     exposed = True
