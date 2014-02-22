@@ -1,59 +1,24 @@
 import cherrypy
 import sqlite3
-import argparse
-import ConfigParser
 
-interests = {
-    'Ambassador': 'Represents Fedora',
-    'Packaging': 'Package Software to be included in Fedora',
-}
 
 class BeefyConnection (object):
     exposed = True
 
-class BeefyConfig(object):
-
-    def __init__(self):
-        self.cfgs = {}
-
-    def _load_config(self, path):
-        """Constructor for skein, will create self.cfgs and self.logger
-
-        :param str path:
-        """
-
-        config = ConfigParser.SafeConfigParser()
-        try:
-            f = open(path)
-            config.readfp(f)
-            f.close()
-        except ConfigParser.InterpolationSyntaxError as e:
-            raise Error("Unable to parse configuration file properly: %s" % e)
-
-        for section in config.sections():
-            if not self.cfgs.has_key(section):
-                self.cfgs[section] = {}
-
-            for k, v in config.items(section):
-                self.cfgs[section][k] = v
-
-user = {}
-
-class BeefyInterests(object):
-    exposed = True
-
-    def get_interests():
-      return "User Interest Info"
+    @cherrypy.expose
+    def index(self):
+        return "Welcome to the Beefy Connection"
 
     def user(self):
         return 'This is the "page" content'
+
 
 class BeefyUser(object):
 
     exposed = True
 
-    def get_user():
-      return "User Info"
+    def __init__(self, dbfile):
+        self.conn = sqlite3.connect(dbfile)
 
     def GET(self):
         user = None
@@ -65,53 +30,16 @@ First name: {0}
 Last Name: {1}
 Email: {2}'''.format(user['first'], user['last'], user['email']))
 
-        user = {
-            'first': first,
-            'last': last,
-            'email': email,
-        }
-#        self.conn.execute('INSERT INTO person (last_name, first_name, email)
-#                           VALUES (%s, %s, %s)' % (last, first, email)')
+    def POST(self, first, last, email):
+        self.conn.execute(
+            '''INSERT INTO person (last_name, first_name, email)
+            VALUES (%s, %s, %s)''' % (last, first, email))
 
         return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
 
-    def POST(self, first, last, email):
-
-        user = {
-            'first': first,
-            'last': last,
-            'email': email,
-        }
-
-    return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
-
 
 def main():
-
-    bc = BeefyConfig()
-    bc._load_config('beefy-connection.conf')
-
-    parser=argparse.ArgumentParser(description='Beefy Connection!!!')
-    parser.add_argument('-c', '--config', dest='config',
-                        default='beefy-connection.cfg')
-    parser.add_argument('-d', '--database', dest='database')
-    args = parser.parse_args()
-
-    cherrypy.tree.mount(
-        BeefyUser(), '/bc/user',
-        {'/':
-            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
-        },
-    )
-    cherrypy.tree.mount(
-        BeefyInterests(), '/bc/interests',
-        {'/':
-            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
-        }
-    )
-
-    cherrypy.engine.start()
-    cherrypy.engine.block()
+    cherrypy.quickstart(BeefyConnection)
 
 if __name__ == '__main__':
     main()
