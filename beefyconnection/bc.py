@@ -1,5 +1,5 @@
 import cherrypy
-import sqlite3
+#import sqlite3
 
 
 class BeefyConnection (object):
@@ -12,13 +12,16 @@ class BeefyConnection (object):
     def user(self):
         return 'This is the "page" content'
 
+class BeefyInterests(object):
+
+    exposed = True
+
+    def GET(self):
+        return ('happy happy joy joy')
 
 class BeefyUser(object):
 
     exposed = True
-
-    def __init__(self, dbfile):
-        self.conn = sqlite3.connect(dbfile)
 
     def GET(self):
         user = None
@@ -31,15 +34,32 @@ Last Name: {1}
 Email: {2}'''.format(user['first'], user['last'], user['email']))
 
     def POST(self, first, last, email):
-        self.conn.execute(
-            '''INSERT INTO person (last_name, first_name, email)
-            VALUES (%s, %s, %s)''' % (last, first, email))
-
-        return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
+#        self.conn.execute(
+#            '''INSERT INTO person (last_name, first_name, email)
+#            VALUES (%s, %s, %s)''' % (last, first, email))
+        return 'boomshaka'
+#        return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
 
 
 def main():
-    cherrypy.quickstart(BeefyConnection)
+
+    cherrypy.tree.mount(
+        BeefyUser(), '/bc/user',
+        {'/':
+            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+        }
+    )
+    cherrypy.tree.mount(
+        BeefyInterests(), '/bc/interests',
+        {'/':
+            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+        }
+    )
+
+    cherrypy.engine.start()
+    cherrypy.engine.block()
+
+    cherrypy.quickstart(BeefyConnection())
 
 if __name__ == '__main__':
     main()
