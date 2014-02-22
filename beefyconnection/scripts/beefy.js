@@ -140,6 +140,11 @@ $(document).ready(function(){
 	$('button#submit').click(function(){
 		if(validate()){
 			data = getData();
+			$.ajax({
+				url:'/bc/submit',
+				method: 'POST',
+				data: data
+			});
 		}
 	});
 });
