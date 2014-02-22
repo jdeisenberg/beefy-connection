@@ -36,6 +36,23 @@ Email: {2}'''.format(user['first'], user['last'], user['email']))
 
 
 def main():
+
+    cherrypy.tree.mount(
+        BeefyUser(), '/bc/user',
+        {'/':
+            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+        }
+    )
+    cherrypy.tree.mount(
+        BeefyInterests(), '/bc/interests',
+        {'/':
+            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+        }
+    )
+
+    cherrypy.engine.start()
+    cherrypy.engine.block()
+
     cherrypy.quickstart(BeefyConnection())
 
 if __name__ == '__main__':
