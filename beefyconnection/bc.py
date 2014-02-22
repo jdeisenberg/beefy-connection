@@ -30,7 +30,6 @@ class BeefyConfig(object):
 
 class BeefyConnection (object):
     exposed = True
-
     def index(self):
         return "Welcome to the Beefy Connection"
 
@@ -44,6 +43,7 @@ class BeefyDisplay (object):
 		from String import Template
 		f = open ('./template/beefy.template','r')
 		return Template(f.read(),dict())
+	index.exposed = True
 
 class BeefyUser(object):
 

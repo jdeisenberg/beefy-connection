@@ -26,7 +26,7 @@ def main():
     )
 
     cherrypy.tree.mount(
-        BeefyDisplay(),'' ,
+        BeefyDisplay(),'/',
         {'/':
             {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }
