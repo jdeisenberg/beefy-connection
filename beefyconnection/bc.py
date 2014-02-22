@@ -1,5 +1,45 @@
-import cherrypy
 #import sqlite3
+import ConfigParser
+
+class BeefyConfig(object):
+
+    def __init__(self):
+        self.cfgs = {}
+
+    def _load_config(self, path):
+        """Constructor for skein, will create self.cfgs and self.logger
+
+        :param str path:
+        """
+
+        config = ConfigParser.SafeConfigParser()
+        try:
+            f = open(path)
+
+    def __init__(self):
+        self.cfgs = {}
+
+    def _load_config(self, path):
+        """Constructor for skein, will create self.cfgs and self.logger
+
+        :param str path:
+        """
+
+        config = ConfigParser.SafeConfigParser()
+        try:
+            f = open(path)
+            config.readfp(f)
+            f.close()
+        except ConfigParser.InterpolationSyntaxError as e:
+            raise Error("Unable to parse configuration file properly: %s" % e)
+
+        for section in config.sections():
+            if not self.cfgs.has_key(section):
+                self.cfgs[section] = {}
+
+            for k, v in config.items(section):
+                self.cfgs[section][k] = v
+
 
 
 class BeefyConnection (object):
@@ -39,28 +79,4 @@ Email: {2}'''.format(user['first'], user['last'], user['email']))
 #            VALUES (%s, %s, %s)''' % (last, first, email))
         return 'boomshaka'
 #        return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
-
-
-def main():
-
-    cherrypy.tree.mount(
-        BeefyUser(), '/bc/user',
-        {'/':
-            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
-        }
-    )
-    cherrypy.tree.mount(
-        BeefyInterests(), '/bc/interests',
-        {'/':
-            {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
-        }
-    )
-
-    cherrypy.engine.start()
-    cherrypy.engine.block()
-
-    cherrypy.quickstart(BeefyConnection())
-
-if __name__ == '__main__':
-    main()
 
