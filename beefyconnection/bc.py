@@ -12,6 +12,12 @@ class BeefyConnection (object):
     def user(self):
         return 'This is the "page" content'
 
+class BeefyInterests(object):
+
+    exposed = True
+
+    def GET(self):
+        return ('happy happy joy joy')
 
 class BeefyUser(object):
 
