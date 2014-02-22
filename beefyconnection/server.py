@@ -7,7 +7,7 @@ from bc import BeefyUser, BeefyPic, BeefyConfig, BeefyConnection
 def main():
     parser=argparse.ArgumentParser(description='Beefy Connection!!!')
     parser.add_argument('-c', '--config', dest='config',
-                        default='beefy-connection.cfg')
+                        default='../beefy-connection.conf')
     parser.add_argument('-d', '--database', dest='database')
     args = parser.parse_args()
     bc_config=BeefyConfig(args)
