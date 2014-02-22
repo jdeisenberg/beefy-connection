@@ -13,13 +13,13 @@ def main():
     args = parser.parse_args()
 
     cherrypy.tree.mount(
-        BeefyUser(), '/bc/user',
+        BeefyUser(), '/bc/submit',
         {'/':
             {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }
     )
     cherrypy.tree.mount(
-        BeefyInterests(), '/bc/interests',
+        BeefyPic(), '/bc/pic',
         {'/':
             {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }
