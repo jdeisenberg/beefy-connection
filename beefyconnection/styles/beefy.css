@@ -9,6 +9,8 @@ div#content{
 	margin-right:auto;
 	max-width:800px;
 	min-height: 700px;
+	border:2px solid;
+	border-radius:25px;
 }
 
 div#user_photo{
@@ -56,4 +58,15 @@ textarea[name="comments"]{
 
 button#next{
 	clear:both;
+}
+
+.red{
+	background-color:pink;
+}
+
+p.error{
+	color:red;
+	font-weight:bold;
+	font-size: 0.9em;
+	margin-bottom:-1em;
 }
