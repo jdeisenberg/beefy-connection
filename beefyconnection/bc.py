@@ -57,26 +57,29 @@ class BeefyUser(object):
     exposed = True
 
     def __init__(self, bc):
-        self.conn = sqlite3.connect(bc.cfgs['db']['path'])
+        self.bc = bc
 
     def POST(self, first, last, email, organization='NULL', irc='NULL',
         phone='NULL', address='NULL', city='NULL', state='NULL', postal='NULL',
         language='NULL', other_interest='NULL', comments='NULL', interests=None):
         """Get user data object from form submission"""
 
-        self.conn.execute(
-            '''INSERT INTO person ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8},
-               {9}, {10}, {11}, {12}, {13})'''.format(last, first, email,
-               organization, irc, phone, address, city, state, postal, language,
-               other_interest, comments))
+        self.conn = sqlite3.connect(self.bc.cfgs['db']['path'])
 
-        ## getuid here
+        sql = "INSERT INTO person ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')".format(last, first, email, organization, irc, phone, address, city, state, postal, language)
 
-        if (interests):
-            interest_list = interests.split()
-            for interest in interest_lists:
-              self.conn.execute('INSERT INTO interests (uid, interest)')
+        print("sql: {0}".format(sql))
 
+        self.conn.execute(sql)
+        self.conn.commit()
+#
+#        ## getuid here
+#
+#        if (interests):
+#            interest_list = interests.split()
+#            for interest in interest_lists:
+#              self.conn.execute('INSERT INTO interests (uid, interest)')
+#
         return ('Created a new user: {1}, {0}: {2}'.format(last, first, email))
 
 class BeefyPic(object):
