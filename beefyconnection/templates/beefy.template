@@ -19,8 +19,14 @@
 	<p id="description">Are you interested in contributing to a great open source community?  Let us know how you&rsquo;d like to be involved!</p>
 	
 	<div id="user_photo">
-		<div id="photo_preview"></div>
+		<div id="photo_preview">
+			<video id="video" width="320" height="240" autoplay></video>
+		</div>
 		<button id="btnTakePicture" class="button btn-large">Take Picture!</button>
+		<div id="your_photo">
+			<canvas id="photo_canvas" width="320" height="240"></canvas>
+			<img id="photo_image" alt="Still photo" width="320" height="240"/>
+		</div>
 	</div>
 	
 	<div id="contacts" class="form-container">
@@ -43,6 +49,7 @@
 	
 	<div id="interests" class="form-container">
 	<h3 id="interest-header">How Would You Like to Contribute?</h3>
+	<div>
 		<input type="checkbox" name="interest" value="content">Content Writer</input><br/>
 		<input type="checkbox" name="interest" value="designer">Designer</input><br/>
 		<input type="checkbox" name="interest" value="people">People Person</input><br/> 
@@ -57,6 +64,7 @@
 		<textarea name="comments" class="textval"></textarea><br/>
 		<button id="back" name="back" class="button btn">Back</button><br/><br/>
 		<button id="submit" name="submit" class="button btn-large" value="Submit">Submit</button>
+	</div>
 	</div>
 </div>
 <footer>
