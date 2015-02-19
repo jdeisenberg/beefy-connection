@@ -11,11 +11,28 @@ class BeefyDatabase(object):
         self.session=self.Session()
 
     def add_person(self, **kwargs):
-        person=Person(
+        person=Person(**kwargs)
+        self.session.add(person)
+        self.session.commit()
+    def read_person(self, **kwargs):
+        queryResults = self.session.query(Person).all()
+        for key, value in queryResults.iteritems():
+          repr(key,"<Person first_name=\"",value["first_name"], "\", 
+                            last_name=\"",value["last_name"],"\",
+                            phone=\"",value["phone"],"\",
+                            city=\"", value["city"],"\",
+                            state=\"", value["city"],"\",
+                            postal_code=\"", value["postal_code"],"\",
+                            irc=\"",value["irc"],"\",
+                            fb=\"",value["fb"],"\",
+                            twitter=\"",value["twitter"],"\",
+                            interests=\"",value["interests"],"\",
+                            email=\"",value["email"],"\",
+                            fas=\"",value["fas"],"\"")
 
 class Person(Base):
     __tablename__ = 'person'
-    idn=Column(Integer, primary_key=True)
+    id=Column(Integer, primary_key=True)
     first_name=Column(String)
     last_name=Column(String)
     phone=Column(String)
