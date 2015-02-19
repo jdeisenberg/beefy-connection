@@ -1,0 +1,1 @@
+CREATE TABLE person (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, email TEXT, fas_id TEXT, organization TEXT, phone TEXT, address TEXT, city TEXT, state TEXT, postal_code TEXT, language TEXT, gate1 DATE, gate2 DATE, gate3 DATE, gate4 DATE, gate5 DATE);
