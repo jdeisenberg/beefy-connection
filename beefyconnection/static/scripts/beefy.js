@@ -185,7 +185,7 @@ $(document).ready(function(){
 		if(validate()){
 			data = getData();
 			$.ajax({
-				url:'/bc/submit',
+				url:'/bc-post',
 				method: 'POST',
 				data: data
 			});
