@@ -114,6 +114,50 @@ function getData(){
 	return data;
 }
 
+function setupVideo() {
+	navigator.getUserMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                       navigator.msGetUserMedia);
+
+	if (navigator.getUserMedia) {
+	navigator.getUserMedia (
+
+		// constraints
+		{
+			video: true,
+			audio: false
+		},
+
+		// successCallback
+		function(localMediaStream) {
+			var video = document.querySelector('video');
+			video.src = window.URL.createObjectURL(localMediaStream);
+			// Do something with the video here, e.g. video.play()
+			video.play();
+		},
+
+		// errorCallback
+		function(err) {
+			console.log("The following error occurred: " + err);
+			alert("The following error occurred: " + err);
+		}
+	);
+	} else {
+	console.log("getUserMedia not supported");
+	alert("getUserMedia not supported");
+	}
+}
+
+function takepicture() {
+	// not using jQuery here; going "old school"
+	var canvas = document.getElementById("photo_canvas");
+	console.log(video.width + " " + video.height);
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    var data = canvas.toDataURL('image/png');
+    document.getElementById("photo_image").setAttribute('src', data);
+  }
+
 $(document).ready(function(){
 	$('div#interests').hide();
 
@@ -146,5 +190,11 @@ $(document).ready(function(){
 				data: data
 			});
 		}
+	});
+
+	setupVideo();
+	
+	$('button#btnTakePicture').click(function(){
+      takepicture();
 	});
 });
