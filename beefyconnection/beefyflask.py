@@ -1,10 +1,13 @@
 from flask import Flask,render_template
 app = Flask(__name__)
 
+def globals():
+    return { 'title' : 'Beefy Connection!',
+             'logo'  : '/static/images/beefy.png'}
+
 @app.route("/")
 def form():
-    data = { 'title' : 'Beefy Connection'}
-    return render_template('mainform.html',**data)
+    return render_template('mainform.html',**globals())
 
 if __name__ == "__main__":
     app.debug = True
