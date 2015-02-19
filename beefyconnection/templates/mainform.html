@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<p id="description">Are you interested in contributing to a great open source community?  Let us know how you&rsquo;d like to be involved!</p>
+	
+	<div id="user_photo">
+		<div id="photo_preview">
+			<video id="video" width="320" height="240" autoplay></video>
+		</div>
+		<button id="btnTakePicture" class="button btn-large">Take Picture!</button>
+		<div id="your_photo">
+			<canvas id="photo_canvas" width="320" height="240"></canvas>
+			<img id="photo_image" width="320" height="240"/>
+		</div>
+	</div>
+	
+	<div id="contacts" class="form-container">
+	<h3 id="contact-header">Contact Info</h3>
+		<input name="first-name" class="req contact long alpha" type="text" placeholder="First Name"></input><br/>
+		<input name="last-name" class="req contact long alpha" type="text" placeholder="Last Name"></input> <br/>
+		<input name="email" class="req contact long email" type="text" placeholder="Email"></input><br/>
+		<input name="organization" class="contact long textval" type="text" placeholder="Organization/Company"></input><br/>
+		<input name="irc" class="contact textval" type="text" placeholder="IRC Nick (FreeNode)"></input><br/>
+		<input name="phone" class="contact phone" type="text" placeholder="Phone"></input><br/>
+		<div id="location">
+			<input name="address" class="contact textval" type="text long" placeholder="Address"></input><br/>
+			<input name="city" class="contact alpha" type="text" placeholder="City"></input>
+			<input name="state" class="contact alpha" type="text" size="2" placeholder="State"></input>
+			<input name="postal" class="contact number" size="5" type="text" placeholder="Postal"></input>
+		</div>
+		<input name="language" class="contact long textval" type="text" placeholder="Preferred Spoken Language"></input><br/><br/><br/>
+		<button id="next" name="next" class="button btn">Next</button>
+	</div>
+	
+	<div id="interests" class="form-container">
+	<h3 id="interest-header">How Would You Like to Contribute?</h3>
+	<div>
+		<input type="checkbox" name="interest" value="content">Content Writer</input><br/>
+		<input type="checkbox" name="interest" value="designer">Designer</input><br/>
+		<input type="checkbox" name="interest" value="people">People Person</input><br/> 
+		<input type="checkbox" name="interest" value="dev">OS Developer</input><br/>
+		<input type="checkbox" name="interest" value="translator">Translator</input><br/>
+		<input type="checkbox" name="interest" value="web">Web Developer</input><br/>
+		<input type="checkbox" name="interest" value="admin">Administrator</input><br/>
+		<label for="other_interest long">Other: </label><br/>
+		<input type="text" name="other_interest" class="textval"></input><br/><br/>
+		<input type="checkbox" name="interest" value="speak">Would you like us to speak at your organization?</input><br/><br/>
+		<label for="comments">Comments:</label><br/>
+		<textarea name="comments" class="textval"></textarea><br/>
+		<button id="back" name="back" class="button btn">Back</button><br/><br/>
+		<button id="submit" name="submit" class="button btn-large" value="Submit">Submit</button>
+	</div>
+	</div>
+{% endblock %}
