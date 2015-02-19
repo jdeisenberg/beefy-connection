@@ -16,7 +16,7 @@
 	<img id="logo" class="headerimg" src="$(logo)" />
 
 	<h1>Connect with <img src="https://fedoraproject.org/static/images/fedora-logo.png" height="35px"/></h1>
-	<p id="description">Are you interested in contributed to a great open source community?  Let us know how you'd like to be involved!</p>
+	<p id="description">Are you interested in contributing to a great open source community?  Let us know how you&rsquo;d like to be involved!</p>
 	
 	<div id="user_photo">
 		<div id="photo_preview"></div>
