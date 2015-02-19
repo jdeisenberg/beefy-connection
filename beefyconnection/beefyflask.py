@@ -13,6 +13,10 @@ def form():
 def post():
     return str(request.form)
 
+@app.route("/bc-success")
+def success():
+    return render_template('thanks.html',**globals())
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
