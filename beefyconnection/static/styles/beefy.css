@@ -1,5 +1,6 @@
 body{
 	background-color:#3562A0;
+	font-family: 'Fanwood Text', serif
 }
 
 div#content{
@@ -8,7 +9,9 @@ div#content{
 	margin-left:auto;
 	margin-right:auto;
 	max-width:800px;
-	min-height: 700px;
+	min-height: 850px;
+	border:2px solid;
+	border-radius:25px;
 }
 
 div#user_photo{
@@ -21,18 +24,20 @@ div#user_photo{
 div#photo_preview{
 	margin-left:auto;
 	margin-right:auto;	
-	margin-top:40px;
-	height: 300px;
-	width:300px;
 	background-color:#f0f0f0;
 }
 
+#photo_canvas { display: none; }
+
 div.form-container{
-	
 	max-width: 600px;
-	margin-left:40px;
+	margin-left:20px;
 	font-family: 'Fanwood Text', serif;
 	float:left;
+}
+
+img#logo{
+	height: 120px;
 }
 
 input{
@@ -56,4 +61,15 @@ textarea[name="comments"]{
 
 button#next{
 	clear:both;
+}
+
+.red{
+	background-color:pink;
+}
+
+p.error{
+	color:red;
+	font-weight:bold;
+	font-size: 0.9em;
+	margin-bottom:-1em;
 }
