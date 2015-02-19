@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Integer, String, Column, create_engine
-from sqlalchmey.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker
 
 Base=declarative_base()
 
@@ -9,26 +9,16 @@ class BeefyDatabase(object):
         self.engine=create_engine(url, echo=True)
         self.Session=sessionmaker(bind=self.engine)
         self.session=self.Session()
-
     def add_person(self, **kwargs):
         person=Person(**kwargs)
         self.session.add(person)
         self.session.commit()
     def read_person(self, **kwargs):
         queryResults = self.session.query(Person).all()
-        for key, value in queryResults.iteritems():
-          repr(key,"<Person first_name=\"",value["first_name"], "\", 
-                            last_name=\"",value["last_name"],"\",
-                            phone=\"",value["phone"],"\",
-                            city=\"", value["city"],"\",
-                            state=\"", value["city"],"\",
-                            postal_code=\"", value["postal_code"],"\",
-                            irc=\"",value["irc"],"\",
-                            fb=\"",value["fb"],"\",
-                            twitter=\"",value["twitter"],"\",
-                            interests=\"",value["interests"],"\",
-                            email=\"",value["email"],"\",
-                            fas=\"",value["fas"],"\"")
+        response = ""
+        for value in queryResults:
+          response += repr("<Person first_name=\"" + value.first_name + "\", last_name=\"" + value.last_name + "\", phone=\"" + value.phone + "\", city=\""+ value.city+"\", state=\""+ value.state+"\",postal_code=\""+ value.postal_code+"\",irc=\""+value.irc+"\",fb=\""+value.fb+"\",twitter=\""+value.twitter+"\",interests=\""+value.interests+"\",email=\""+value.email+"\",fas=\""+value.fas+"\"")
+        return response
 
 class Person(Base):
     __tablename__ = 'person'
@@ -49,4 +39,6 @@ class Person(Base):
     def __repr__(self):
         return 'Person(%s,%s,%s)' ( self.first_name, self.last_name,
                 self.fas)
+engine = create_engine('sqlite:///person.db', echo=True)
+Base.metadata.create_all(engine)
 

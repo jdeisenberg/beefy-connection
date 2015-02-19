@@ -12,8 +12,8 @@ def form():
 
 @app.route("/bc-post",methods=['POST'])
 def post():
-    databaseConnector = new BeefyDatabase("sqlite3://person.db")
-    databaseConnector.addPerson(first_name="Joshua",
+    databaseConnector = BeefyDatabase("sqlite:///person.db")
+    databaseConnector.add_person(first_name="Joshua",
                                 last_name="Santos",
                                 phone="9094360697",
                                 city="Fontana",
@@ -25,7 +25,7 @@ def post():
                                 interests="tennis, programming, math",
                                 email="nerdsville@nerdsville.net",
                                 fas="nerdsville")
-    return databaseConnector.readPerson()
+    return databaseConnector.read_person()
 
 """
     id=Column(Integer, primary_key=True)
