@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import *
 app = Flask(__name__)
 
 def globals():
@@ -8,6 +8,10 @@ def globals():
 @app.route("/")
 def form():
     return render_template('mainform.html',**globals())
+
+@app.route("/bc-post",methods=['POST'])
+def post():
+    return str(request.form)
 
 if __name__ == "__main__":
     app.debug = True
