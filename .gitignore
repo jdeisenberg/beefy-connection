@@ -50,3 +50,4 @@ tmp/
 *~
 
 *.sqlite
+beefyconnection/uploads/*png

@@ -3,12 +3,13 @@ from setuptools import setup, find_packages
 version = '0.0.0'
 
 install_requires = [
-    'cherrypy'
+    'flask',
+    'sqlalchemy'
 ]
 
 entry_points = """\
 [console_scripts]
-beefyconn = beefyconnection.bc:main
+beefyconn = beefyconnection.beefyflask:app
 """
 
 setup(

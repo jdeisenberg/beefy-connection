@@ -14,7 +14,7 @@ function valAlpha(val){
 
 /* Add many common character ranges */
 function valText(val){
-	crit = /^[A-Za-z0-9\. \?:\-(),@\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0370-\u03FF\u0400-\u04FF\u0590-\u05FF\u0600-\u06FF\u0700-\u074F\u0900-\u097F\u0980-\u09FF\u0A00-\u0A7F\u0A80-\u0AFF\u0B00-\u0B7F\u0C00-\u0C7F\u0C80-\u0CFF\u0D00-\u0D7F\u0D80-\u0DFF\u0E00-\u0E7F\u0E80-\u0EFF\u0F00-\u0FFF\u1000-\u109F\u10A0-\u10FF\u1100-\u11FF\u1200-\u137F\u1700-\u171F\u1780-\u17FF\u1800-\u18AF\u4E00-\u9FFF\uAC00-\uD7AF\uF900-\uFAFF]+$/;
+	crit = /^[A-Za-z0-9\. \?\!:\-(),@\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u0370-\u03FF\u0400-\u04FF\u0590-\u05FF\u0600-\u06FF\u0700-\u074F\u0900-\u097F\u0980-\u09FF\u0A00-\u0A7F\u0A80-\u0AFF\u0B00-\u0B7F\u0C00-\u0C7F\u0C80-\u0CFF\u0D00-\u0D7F\u0D80-\u0DFF\u0E00-\u0E7F\u0E80-\u0EFF\u0F00-\u0FFF\u1000-\u109F\u10A0-\u10FF\u1100-\u11FF\u1200-\u137F\u1700-\u171F\u1780-\u17FF\u1800-\u18AF\u4E00-\u9FFF\uAC00-\uD7AF\uF900-\uFAFF]+$/;
 	if (!crit.test(val)){
 		return false;
 	}else{
@@ -32,10 +32,10 @@ function valEmail(val){
 }
 
 function valField(obj,func,message){
-		var str = $(obj).val();
-		if ((str != '') && (!func(str))){
-			fieldErr($(obj),message);
-		}
+	var str = $(obj).val();
+	if ((str != '') && (!func(str))){
+		fieldErr($(obj),message);
+	}
 }
 
 function valNum(val){
@@ -186,9 +186,27 @@ $(document).ready(function(){
 		if(validate()){
 			data = getData();
 			$.ajax({
-				url:'/bc/submit',
+				url:'/bc-post',
 				method: 'POST',
-				data: data
+				data: data,
+				dataType: 'json',
+			}).done(function(result){
+				if (result.status != 'error'){
+					img = $('img#photo_image');
+                			if (typeof img !== 'undefined'){
+                        			$.ajax({
+                                		url:'/bc-upload',
+                                		method: 'POST',
+                                		enctype: 'multipart/form-data',
+                                		dataType: 'json',
+                               			data: { 'photo' : img.attr('src') },
+                                		}).done(function(result){
+							window.location.replace('/bc-success');
+                                		});
+                			}
+				}else{
+					alert("Couldn't submit your form.  " + result.message);
+				}
 			});
 		}
 	});
