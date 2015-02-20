@@ -1,4 +1,4 @@
-import os, datetime,re
+import os,re
 from flask import *
 app = Flask(__name__)
 
@@ -19,8 +19,8 @@ def post():
 def upload():
     try:
         name = session['name']
-        f = re.sub('data:image/png;base64,','',request.form['photo'] +'++').decode('base64') 
-        fn = open("%s/%s/%s" % (os.path.dirname(os.path.realpath(__file__)),"uploads",name + str(datetime.datetime.now()) + ".png"),'wb')
+        f = re.sub(r'data.*,','',request.form['photo'] +'++').decode('base64') 
+        fn = open("%s/%s/%s" % (os.path.dirname(os.path.realpath(__file__)),"uploads",name + ".png"),'wb')
 	fn.write(f)
 	fn.close()
 	return jsonify(stat="Success")
