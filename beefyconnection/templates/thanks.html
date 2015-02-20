@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Thank you for your interest in Fedora!</h3>
+{% endblock %}
+
+{% block footer_scripts %}
+{{ super }}
+<script type="text/javascript">
+setTimeout(function(){ window.location ='/'; }, 6000);
+</script>
+{% endblock %}
