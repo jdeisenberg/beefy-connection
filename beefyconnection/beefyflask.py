@@ -1,5 +1,6 @@
 import os,re
 from flask import *
+from beefy_db import BeefyDatabase
 app = Flask(__name__)
 
 def globals():
