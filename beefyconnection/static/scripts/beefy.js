@@ -70,6 +70,7 @@ function valPhone(val){
 function  validate(){
 	$('p.error').remove();
 	$('input').removeClass('red');
+	$('textarea').removeClass('red');
 	$('.textval').each(function(){
 		valField($(this),valText,'Please enter valid text.');
 	});
