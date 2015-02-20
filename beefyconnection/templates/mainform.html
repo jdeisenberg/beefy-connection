@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div id="data_entry_page">
 	<p id="description">Are you interested in contributing to a great open source community?  Let us know how you&rsquo;d like to be involved!</p>
 	
 	<div id="user_photo">
@@ -51,4 +52,9 @@
 		<button id="submit" name="submit" class="button btn-large" value="Submit">Submit</button>
 	</div>
 	</div>
+</div>
+
+<div id="success_page">
+<h3>Thank you for your interest in Fedora, <span id="confirm_name"></span>!</h3>
+</div>
 {% endblock %}

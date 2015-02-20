@@ -173,8 +173,27 @@ function takepicture() {
     document.getElementById("photo_image").setAttribute('src', data);
   }
 
+function show_success() {
+	$(document).scrollTop(0);
+	$('div#data_entry_page').hide();
+	$('span#confirm_name').html($('input[name="first-name"]').val())
+	$('div#success_page').show();
+	setTimeout(function(){ new_data_entry(); }, 6000);
+}
+
+function new_data_entry() {
+	$('div#success_page').hide();
+	$('div#data_entry_page').show();
+	$('input[type=text]').val('');
+	$('textarea').val('');
+	$('input[type=checkbox]').prop('checked', false);
+	$('div#contacts').show();
+	$('div#interests').hide();
+}
+
 $(document).ready(function(){
 	$('div#interests').hide();
+	$('div#success_page').hide();
 
 	if ($('img#logo').attr('src') == '$(logo)'){
 		$('img#logo').hide();
@@ -215,7 +234,7 @@ $(document).ready(function(){
                                 		dataType: 'json',
                                			data: { 'photo' : img.attr('src') },
                                 		}).done(function(result){
-							window.location.replace('/bc-success');
+							show_success();
                                 		});
                 			}
 				}else{
