@@ -154,7 +154,7 @@ function takepicture() {
 	var canvas = document.getElementById("photo_canvas");
 	console.log(video.width + " " + video.height);
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-    var data = canvas.toDataURL('image/png');
+    var data = canvas.toDataURL('image/jpg');
     document.getElementById("photo_image").setAttribute('src', data);
   }
 
