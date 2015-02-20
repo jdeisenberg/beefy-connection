@@ -187,17 +187,26 @@ $(document).ready(function(){
 			$.ajax({
 				url:'/bc-post',
 				method: 'POST',
-				data: data
+				data: data,
+				dataType: 'json',
+			}).done(function(result){
+				if (result.status != 'error'){
+					img = $('img#photo_image');
+                			if (typeof img !== 'undefined'){
+                        			$.ajax({
+                                		url:'/bc-upload',
+                                		method: 'POST',
+                                		enctype: 'multipart/form-data',
+                                		dataType: 'json',
+                               			data: { 'photo' : img.attr('src') },
+                                		}).done(function(result){
+							window.location.replace('/bc-success');
+                                		});
+                			}
+				}else{
+					alert("Couldn't submit your form.  " + result.message);
+				}
 			});
-		}
-		img = $('img#photo_image');
-		if (typeof img !== 'undefined'){
-			$.ajax({
-				url:'/bc-upload',
-				method: 'POST',
-				enctype: 'multipart/form-data',
-				data: { 'photo' : img.attr('src') },
-				});
 		}
 	});
 
