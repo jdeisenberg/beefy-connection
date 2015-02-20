@@ -47,6 +47,17 @@ function valNum(val){
 	}
 }
 
+
+// Allow both US Zip+4 and Canadian postal codes
+function valPostal(val) {
+	crit = /^[A-Za-z0-9 -]+$/;
+	if (!crit.test(val)) {
+		return false;
+	}else{
+		return true;
+	}
+}
+
 function valPhone(val){
 	crit = /^[\(\)\-0-9\+]+$/;
 	if (!crit.test(val)){
@@ -72,7 +83,10 @@ function  validate(){
 		valField($(this),valNum,'Please enter only numbers.');	
 	});
 	$('.phone').each(function(){
-		valField($(this),valPhone,'Please enter a valid phone numer.');	
+		valField($(this),valPhone,'Please enter a valid phone number.');	
+	});
+	$('.postalcode').each(function(){
+		valField($(this),valPostal,'Please enter a valid postal code.');	
 	});
 	$('.req').each(function(){
 		if ($(this).val() == ''){
