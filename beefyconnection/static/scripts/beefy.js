@@ -31,10 +31,10 @@ function valEmail(val){
 }
 
 function valField(obj,func,message){
-		var str = $(obj).val();
-		if ((str != '') && (!func(str))){
-			fieldErr($(obj),message);
-		}
+	var str = $(obj).val();
+	if ((str != '') && (!func(str))){
+		fieldErr($(obj),message);
+	}
 }
 
 function valNum(val){
@@ -189,6 +189,15 @@ $(document).ready(function(){
 				method: 'POST',
 				data: data
 			});
+		}
+		img = $('img#photo_image');
+		if (typeof img !== 'undefined'){
+			$.ajax({
+				url:'/bc-upload',
+				method: 'POST',
+				enctype: 'multipart/form-data',
+				data: { 'photo' : img.attr('src') },
+				});
 		}
 	});
 
