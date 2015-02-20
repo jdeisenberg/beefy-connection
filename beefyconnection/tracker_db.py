@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Integer, String, Column, create_engine
+from sqlalchemy import Integer, String, Column, Date, create_engine
 from sqlalchmey.orm import sessionmaker
 
 Base=declarative_base()
@@ -49,4 +49,24 @@ class Person(Base):
     def __repr__(self):
         return 'Person(%s,%s,%s)' ( self.first_name, self.last_name,
                 self.fas)
+
+class Interests(Base):
+    __tablename__ = 'interests'
+    id=Column(Integer, primary_key=True)
+    text=Column(String)
+
+    def __repr__(self):
+        return 'Interests(%s,%s)' ( self.id, self.text)
+
+class Tracker(Base):
+    __tablename__ = 'tracker'
+    id=Column(Integer, primary_key=True)
+    gate1=Date(Date)
+    gate2=Date(Date)
+    gate3=Date(Date)
+    gate4=Date(Date)
+    gate5=Date(Date)
+
+    def __repr__(self):
+        return 'Interests(%s,%s)' ( self.id, self.text)
 
